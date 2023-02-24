@@ -1,2 +1,20 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+#sql 建表语句如下，分别为用户表和钱包表：
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `wallet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `balance` decimal(10,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_wallet_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+);
